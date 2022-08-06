@@ -2,7 +2,8 @@ const EventEmitter = require('events')
 
 const DEFAULT_OPTIONS = {
   useProps: true,
-  usePropsEvents: false
+  usePropsEvents: false,
+  useObjectManager:false
 }
 
 class BusHelper extends EventEmitter {
@@ -32,6 +33,9 @@ class BusHelper extends EventEmitter {
     this._ifaceProxy = await objectProxy.getInterface(this.iface)
 
     if (this.options.useProps) {
+      this._propsProxy = await objectProxy.getInterface('org.freedesktop.DBus.Properties')
+    }
+    if (this.options.useObjectManager) {
       this._propsProxy = await objectProxy.getInterface('org.freedesktop.DBus.Properties')
     }
 
