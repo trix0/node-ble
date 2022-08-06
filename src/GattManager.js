@@ -8,11 +8,11 @@ const BusHelper = require('./BusHelper')
 class GattManager {
   constructor (dbus) {
     this.dbus = dbus
-    this.helper = new BusHelper(dbus, 'org.bluez', '/org/bluez', 'org.bluez.GattManager1')
+    this.helper = new BusHelper(dbus, 'org.bluez', '/org/bluez', 'org.freedesktop.DBus.ObjectManager')
   }
 
   async init () {
-    const managedObjects = await this.helper.GetManagedObjects()
+    const managedObjects = await this.helper.props()
     console.log(JSON.stringify(managedObjects));
     managedObjects.forEach(element => {
         console.log(JSON.stringify(element));
