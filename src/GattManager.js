@@ -12,7 +12,7 @@ class GattManager {
   }
 
   async init () {
-    const managedObjects = await this.helper.props()
+    const managedObjects = await this.helper.prop("org.bluez.GattManager1")
     console.log(JSON.stringify(managedObjects));
     managedObjects.forEach(element => {
         console.log(JSON.stringify(element));
