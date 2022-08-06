@@ -7,7 +7,7 @@ const BusHelper = require('./BusHelper')
 class GattManager {
   constructor (dbus) {
     this.dbus = dbus
-    this.helper = new BusHelper(dbus, 'org.bluez', '/org/bluez/hci0', 'org.bluez.GattManager1')
+    this.helper = new BusHelper(dbus, 'org.bluez', '/org/bluez/hci0', 'org.bluez.GattManager1',{useProps:""})
     this.init()
   }
 
