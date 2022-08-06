@@ -1,5 +1,6 @@
 const { systemBus: createSystemBus } = require('dbus-next')
 const Bluetooth = require('./Bluetooth')
+const GattManager = require('./GattManager')
 
 /**
    * @typedef {Object} NodeBleSession
@@ -25,6 +26,7 @@ function createBluetooth () {
   const dbus = createSystemBus()
 
   const bluetooth = new Bluetooth(dbus)
+  const gattManager=new GattManager(dbus);
   const destroy = () => dbus.disconnect()
 
   return { bluetooth, destroy }
