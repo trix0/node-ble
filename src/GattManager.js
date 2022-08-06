@@ -8,6 +8,7 @@ class GattManager {
   constructor (dbus) {
     this.dbus = dbus
     this.helper = new BusHelper(dbus, 'org.bluez', '/org/bluez', 'org.freedesktop.DBus.ObjectManager')
+    this.init()
   }
 
   async init () {
