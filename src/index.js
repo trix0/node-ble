@@ -18,28 +18,29 @@ const GattService = require('./GattService')
  * @example
  * const { createBluetooth } = require('node-ble')
  *
- * async function main () {
- *  const { bluetooth, destroy } = createBluetooth()
- *  const adapter = await bluetooth.defaultAdapter()
- *  // do here your staff
- *  destroy()
- * }
+
  */
-function createBluetooth () {
+
+async function main(bluetooth) {
+  const adapter = await bluetooth.defaultAdapter();
+  let currentValue = true;
+
+  setInterval(() => {
+    console.log("Setting adapter to:" + currentValue)
+    adapter.helper.set("Powered", {
+      Transport: buildTypedValue('b', currentValue ? 1 : 0)
+    })
+    currentValue = !currentValue;
+  }, 2000);
+
+}
+function createBluetooth() {
   const dbus = createSystemBus()
 
   const bluetooth = new Bluetooth(dbus)
+  main(bluetooth)
 
-  const adapter=bluetooth.defaultAdapter();
-  let currentValue=true;
 
-  setInterval(()=>{
-    console.log("Setting adapter to:"+currentValue)
-    adapter.helper.set("Powered",{
-      Transport: buildTypedValue('b', currentValue?1:0)
-    })
-    currentValue=!currentValue;
-  },2000);
   //const advertismentManager=new AdvertistmentManager(dbus)
 
   //advertismentManager.registerAdvertisment()
