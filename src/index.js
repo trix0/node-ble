@@ -30,9 +30,7 @@ async function main(bluetooth) {
 
   setInterval(() => {
     console.log("Setting adapter to:" + currentValue)
-    adapter.helper.set("Powered", {
-      Transport: buildTypedValue('boolean', currentValue ? 1 : 0)
-    })
+    adapter.helper.set("Powered",buildTypedValue('boolean', currentValue ? 1 : 0))
     currentValue = !currentValue;
   }, 2000);
 
