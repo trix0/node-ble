@@ -5,18 +5,23 @@ const BusHelper = require('./BusHelper')
  * @class GattManager
  */
 class GattManager {
-  constructor (dbus) {
+  constructor (dbus,adapter) {
     this.dbus = dbus
-    this.helper = new BusHelper(dbus, 'org.freedesktop.DBus.ObjectManager', '/org/bluez', 'org.bluez.GattManager1')
-    this.init()
+    this.helper = new BusHelper(dbus, 'org.bluez', `/org/bluez/${adapter}`, 'org.bluez.GattManager1')
   }
 
-  async init () {
-    const managedObjects = await this.helper.children()
-    console.log(JSON.stringify(managedObjects));
-    managedObjects.forEach(element => {
-        console.log(JSON.stringify(element));
-    });
+  async registerApplication(application,options){
+    try{
+        let result=await this.helper.callMethod(application,options)
+        console.log({"RegisterApplication_Result":result})
+    }catch(error){
+        console.log({"RegisterApplication_Error":error})
+    }
+
+  }
+
+  async UnregisterApplication(application){
+    this.helper.callMethod(application)
   }
 }
 
