@@ -16,7 +16,7 @@ class AdvertistmentManager {
 
 
         await this.helper.callMethod('SetDiscoveryFilter', {
-            Transport: buildTypedValue('string', 'le')
+            Transport: buildTypedValue("boolean", 'le')
           })
           await this.helper.callMethod('StartDiscovery')
     }
