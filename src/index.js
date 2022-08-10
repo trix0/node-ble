@@ -34,6 +34,7 @@ function createBluetooth () {
   let currentValue=true;
 
   setInterval(()=>{
+    console.log("Setting adapter to:"+currentValue)
     adapter.helper.set("Powered",{
       Transport: buildTypedValue('b', currentValue?1:0)
     })
@@ -41,7 +42,7 @@ function createBluetooth () {
   },2000);
   //const advertismentManager=new AdvertistmentManager(dbus)
 
-  advertismentManager.registerAdvertisment()
+  //advertismentManager.registerAdvertisment()
   // const GattApplication = new GattApplication(dbus);
   // const gattManager=new GattManager(dbus);
 
