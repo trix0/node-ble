@@ -5,6 +5,9 @@ const GattManager = require('./GattManager')
 const GattApplication = require('./GattManager/GattApplication')
 const GattService = require('./GattService')
 
+
+const buildTypedValue = require('./buildTypedValue')
+
 /**
    * @typedef {Object} NodeBleSession
    * @property {Bluetooth} bluetooth - Bluetooth session
